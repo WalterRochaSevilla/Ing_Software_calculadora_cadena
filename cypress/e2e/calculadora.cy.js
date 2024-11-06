@@ -17,4 +17,10 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "9");
   });
+  it("recibe una cadena con 3 números separados por '- y ,' y devuelve la suma", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("1-2,3");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "6");
+  });
 });
