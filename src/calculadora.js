@@ -3,7 +3,17 @@ function calcular(a) {
     return 0;
   }
   else {
-    const numeros = a.split(/,|-/).map(Number);
+    let delimitador = /,|-/; 
+    let numerosStr = a;
+  
+    const delimitadorPersonalizado = a.match(/^\/\/\[(.+?)\]\s/);
+    if (delimitadorPersonalizado) {
+      const delimitadorTexto = delimitadorPersonalizado[1];
+      delimitador = new RegExp(`${delimitadorTexto}|,|-`);
+      numerosStr = a.slice(delimitadorPersonalizado[0].length);
+    }
+    const numeros = numerosStr.split(delimitador).map(Number);
+  
     return numeros.reduce((acc, num) => acc + num, 0);
   }
 }

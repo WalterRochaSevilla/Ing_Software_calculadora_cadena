@@ -23,4 +23,10 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "6");
   });
+  it("recibe una cadena con números separados por un delimitador personalizado y devuelve la suma", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("//[;] 6;7;4");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "17");
+  });
 });
