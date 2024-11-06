@@ -35,4 +35,10 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "2");
   });
+  it("deberia manejar delimitadores de longitud variable '//[***] 1***2***3' y retornar 6", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("//[***] 1***2***3");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "6");
+  });
 });

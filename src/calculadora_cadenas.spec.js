@@ -22,4 +22,7 @@ describe("Sumar", () => {
   it("deberia ignorar números mayores a 1000 y retornar 2 para '2,1001'", () => {
     expect(calcular("2,1001")).toEqual(2);
   });
+  it("deberia manejar delimitadores de longitud variable '//[***] 1***2***3' y retornar 6", () => {
+    expect(calcular("//[***] 1***2***3")).toEqual(6);
+  });
 });
