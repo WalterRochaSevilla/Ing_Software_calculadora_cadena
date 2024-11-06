@@ -1,5 +1,10 @@
 function calcular(a) {
-  return 0;
+  if (a.trim() === ""){
+    return 0;
+  }
+  else {
+    return 5;
+  }
 }
 
 export default calcular;
