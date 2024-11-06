@@ -5,4 +5,16 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "0");
   });
+  it("recibe una cadena con 2 números y devuelve 5", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("3,2");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "5");
+  });
+  it("recibe una cadena con 2 números separados por ',' y devuelve la suma", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("7,2");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "9");
+  });
 });

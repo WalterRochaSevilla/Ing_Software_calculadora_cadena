@@ -3,7 +3,8 @@ function calcular(a) {
     return 0;
   }
   else {
-    return 5;
+    const numeros = a.split(",").map(Number);
+    return numeros.reduce((acc, num) => acc + num, 0);
   }
 }
 

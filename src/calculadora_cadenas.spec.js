@@ -7,4 +7,7 @@ describe("Sumar", () => {
   it("deberia devolver 5", () => {
     expect(calcular("3,2")).toEqual(5);
   });
+  it("deberia devolver 9", () => {
+    expect(calcular("7,2")).toEqual(9);
+  });
 });
