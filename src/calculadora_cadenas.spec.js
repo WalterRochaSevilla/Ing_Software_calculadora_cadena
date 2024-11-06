@@ -19,4 +19,7 @@ describe("Sumar", () => {
   it("deberia devolver la suma para un delimitador personalizado con comas y guiones '//[;] 6,3-2;1'", () => {
     expect(calcular("//[;] 6,3-2;1")).toEqual(12);
   });
+  it("deberia ignorar números mayores a 1000 y retornar 2 para '2,1001'", () => {
+    expect(calcular("2,1001")).toEqual(2);
+  });
 });

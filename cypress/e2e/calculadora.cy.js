@@ -29,4 +29,10 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "17");
   });
+  it("Ignora los valores mayores a 1000", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("2,1001");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "2");
+  });
 });
