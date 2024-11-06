@@ -41,4 +41,10 @@ describe("Sumador", () => {
     cy.get("#calcular-button").click();
     cy.get("#resultado-div").should("contain", "6");
   });
+  it("deberia manejar múltiples delimitadores '//[*][%] 1*2%3,7-9' y retornar 22", () => {
+    cy.visit("/");
+    cy.get("#numeros").type("//[*][%] 1*2%3,7-9");
+    cy.get("#calcular-button").click();
+    cy.get("#resultado-div").should("contain", "22");
+  });
 });

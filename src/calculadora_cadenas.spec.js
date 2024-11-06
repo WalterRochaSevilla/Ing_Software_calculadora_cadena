@@ -25,4 +25,7 @@ describe("Sumar", () => {
   it("deberia manejar delimitadores de longitud variable '//[***] 1***2***3' y retornar 6", () => {
     expect(calcular("//[***] 1***2***3")).toEqual(6);
   });
+  it("deberia manejar múltiples delimitadores '//[*][%] 1*2%3,7-9' y retornar 22", () => {
+    expect(calcular("//[*][%] 1*2%3,7-9")).toEqual(22);
+  });
 });
