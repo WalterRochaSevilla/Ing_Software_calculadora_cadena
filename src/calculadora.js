@@ -1,40 +1,40 @@
-function obtenerDelimitador(inputString) {
+function extraerDelimitadorYNumeros(cadenaEntrada) {
   const delimitadorPorDefecto = /,|-/;
 
-  const delimitadorPersonalizado = inputString.match(/^\/\/(\[.+?\])+\s/);
+  const delimitadorPersonalizado = cadenaEntrada.match(/^\/\/(\[.+?\])+\s/);
   if (!delimitadorPersonalizado) {
-    return { delimitador: delimitadorPorDefecto, numerosCadena: inputString };
+    return { delimitador: delimitadorPorDefecto, cadenaNumeros: cadenaEntrada };
   }
 
-  const delimitadores = [...inputString.matchAll(/\[(.+?)\]/g)].map(match => match[1]);
+  const delimitadores = [...cadenaEntrada.matchAll(/\[(.+?)\]/g)].map(match => match[1]);
   const delimitadoresEscapados = delimitadores.map(delim => delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
   const delimitador = new RegExp(`${delimitadoresEscapados.join('|')}|,|-`);
-  const numerosCadena = inputString.slice(delimitadorPersonalizado[0].length);
+  const cadenaNumeros = cadenaEntrada.slice(delimitadorPersonalizado[0].length);
 
-  return { delimitador, numerosCadena };
+  return { delimitador, cadenaNumeros };
 }
 
-function esCadenaVacia(inputString) {
-  return inputString.trim() === "";
+function esCadenaVacia(cadenaEntrada) {
+  return cadenaEntrada.trim() === "";
 }
 
-function filtrarNumerosValidos(numeros) {
+function excluirNumerosMayoresA1000(numeros) {
   return numeros.filter(num => num <= 1000);
 }
 
-function calcular(inputString) {
-  if (esCadenaVacia(inputString)) {
+function calcular(cadenaEntrada) {
+  if (esCadenaVacia(cadenaEntrada)) {
     return 0;
   }
 
-  const { delimitador, numerosCadena } = obtenerDelimitador(inputString);
+  const { delimitador, cadenaNumeros } = extraerDelimitadorYNumeros(cadenaEntrada);
 
-  const numeros = numerosCadena
+  const numeros = cadenaNumeros
     .split(delimitador)
     .map(Number);
 
-  const numerosValidos = filtrarNumerosValidos(numeros);
+  const numerosValidos = excluirNumerosMayoresA1000(numeros);
 
   return numerosValidos.reduce((acc, num) => acc + num, 0);
 }
