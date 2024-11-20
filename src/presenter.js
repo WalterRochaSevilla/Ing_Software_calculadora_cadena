@@ -1,14 +1,14 @@
-import calcular from "./calculadora.js"; 
+import calcular from "./calculadora.js";
 
-const input = document.querySelector("#numeros"); 
+const input = document.querySelector("#numeros");
 const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+const resultadoDiv = document.querySelector("#resultado-div");
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); 
+  event.preventDefault();
 
-  const cadenaNumeros = input.value; 
-  const resultado = calcular(cadenaNumeros); 
+  const cadenaNumeros = input.value;
+  const resultado = calcular(cadenaNumeros);
 
-  div.innerHTML = `<p>Resultado: ${resultado}</p>`; 
+  resultadoDiv.innerHTML = `<p>Resultado: ${resultado}</p>`;
 });

@@ -1,24 +1,23 @@
-function calcular(a) {
-  if (a.trim() === ""){
+function calcular(inputString) {
+  if (inputString.trim() === "") {
     return 0;
-  }
-  else {
+  } else {
     let delimitador = /,|-/;
-    let numerosStr = a;
+    let numerosCadena = inputString;
 
-    const delimitadorPersonalizado = a.match(/^\/\/(\[.+?\])+\s/);
+    const delimitadorPersonalizado = inputString.match(/^\/\/(\[.+?\])+\s/);
     if (delimitadorPersonalizado) {
-      const delimitadores = [...a.matchAll(/\[(.+?)\]/g)].map(match => match[1]);
+      const delimitadores = [...inputString.matchAll(/\[(.+?)\]/g)].map(match => match[1]);
 
       const delimitadoresEscapados = delimitadores.map(delim => delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-      delimitador = new RegExp(`${delimitadoresEscapados.join('|')}|,|-`); 
-      numerosStr = a.slice(delimitadorPersonalizado[0].length); 
+      delimitador = new RegExp(`${delimitadoresEscapados.join('|')}|,|-`);
+      numerosCadena = inputString.slice(delimitadorPersonalizado[0].length);
     }
 
-   const numeros = numerosStr
+    const numeros = numerosCadena
       .split(delimitador)
       .map(Number)
-      .filter(num => num <= 1000); 
+      .filter(num => num <= 1000);
 
     return numeros.reduce((acc, num) => acc + num, 0);
   }
