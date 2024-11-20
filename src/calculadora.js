@@ -15,8 +15,16 @@ function obtenerDelimitador(inputString) {
   return { delimitador, numerosCadena };
 }
 
+function esCadenaVacia(inputString) {
+  return inputString.trim() === "";
+}
+
+function filtrarNumerosValidos(numeros) {
+  return numeros.filter(num => num <= 1000);
+}
+
 function calcular(inputString) {
-  if (inputString.trim() === "") {
+  if (esCadenaVacia(inputString)) {
     return 0;
   }
 
@@ -24,10 +32,11 @@ function calcular(inputString) {
 
   const numeros = numerosCadena
     .split(delimitador)
-    .map(Number)
-    .filter(num => num <= 1000);
+    .map(Number);
 
-  return numeros.reduce((acc, num) => acc + num, 0);
+  const numerosValidos = filtrarNumerosValidos(numeros);
+
+  return numerosValidos.reduce((acc, num) => acc + num, 0);
 }
 
 export default calcular;
